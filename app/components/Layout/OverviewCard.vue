@@ -1,29 +1,29 @@
-<script setup>
-const props = defineProps({
-  imageSrc: {
-    type: String,
-    default: '',
-  },
-  imageAlt: {
-    type: String,
-  },
-})
+<script setup lang="ts">
+const props = defineProps<{
+  id: string
+  imageSrc: string
+  imageAlt: string
+  to: string
+}>()
+
 const imageLoaded = ref(false)
 </script>
 
 <template>
-  <UCard class="relative">
-    <div class="h-42 flex items-center justify-center relative overflow-hidden">
-      <NuxtImg
-        v-if="props.imageSrc"
-        :src="props.imageSrc"
-        :alt="props.imageAlt"
-        class="object-cover rounded-md transition-opacity duration-500"
-        :class="{ 'opacity-0': !imageLoaded, 'opacity-100': imageLoaded }"
-        @load="imageLoaded = true"
-      />
-    </div>
-  </UCard>
+  <NuxtLink :to="props.to">
+    <UCard class="overview-card relative">
+      <div class="h-42 flex items-center justify-center relative overflow-hidden">
+        <NuxtImg
+          v-if="props.imageSrc"
+          :src="props.imageSrc"
+          :alt="props.imageAlt"
+          class="overview-image object-cover rounded-md transition-opacity duration-500"
+          :class="{ 'opacity-0': !imageLoaded, 'opacity-100': imageLoaded }"
+          @load="imageLoaded = true"
+        />
+      </div>
+    </UCard>
+  </NuxtLink>
 </template>
 
 <style scoped>
@@ -32,5 +32,8 @@ const imageLoaded = ref(false)
 }
 .opacity-100 {
   opacity: 1;
+}
+.overview-card:hover {
+  cursor: pointer;
 }
 </style>

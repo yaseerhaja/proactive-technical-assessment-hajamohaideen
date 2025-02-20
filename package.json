@@ -38,5 +38,8 @@
   },
   "resolutions": {
     "@typescript-eslint/utils": "^8.6.0"
+  },
+  "dependencies": {
+    "lucide-vue-next": "^0.475.0"
   }
 }

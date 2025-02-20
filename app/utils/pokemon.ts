@@ -60,6 +60,16 @@ export interface Sprites {
   front_female: string | null
   front_shiny: string
   front_shiny_female: string | null
+  other: SpriteOther
+}
+
+export interface SpriteOther {
+  'official-artwork': SpriteOtherArtwork
+}
+
+export interface SpriteOtherArtwork {
+  front_default: string
+  front_shiny: string
 }
 
 export interface Stat {

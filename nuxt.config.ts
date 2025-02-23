@@ -80,4 +80,15 @@ export default defineNuxtConfig({
       },
     },
   },
+
+    runtimeConfig: {
+        public: {
+            apiParty: {
+                endpoints: {
+                    pokemon: 'https://pokeapi.co/api/v2',
+                    rickAndMorty: 'https://rickandmortyapi.com/api',
+                },
+            },
+        },
+    },
 })

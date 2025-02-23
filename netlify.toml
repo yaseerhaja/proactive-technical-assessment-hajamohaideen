@@ -5,6 +5,8 @@ functions = ".netlify/functions"
 
 [build.environment]
 NODE_VERSION = "20"
+POKEMON_API_BASE_URL = "https://pokeapi.co/api/v2"
+RICK_AND_MORTY_API_BASE_URL = "https://rickandmortyapi.com/api"
 
 [[redirects]]
 from = "/*"

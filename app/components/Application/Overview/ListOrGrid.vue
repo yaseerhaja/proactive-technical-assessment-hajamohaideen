@@ -18,9 +18,9 @@ const props = defineProps<{
         class="p-4 w-full"
       >
         <div class="flex flex-col justify-between items-center md:space-x-4 md:flex-row" :class="{ 'flex-col text-center': props.isGrid }">
-          <div>
+          <div class="md:flex flex-row items-center">
             <img :src="item.image" :alt="item.name" class="w-48 h-48 md:w-32 md:h-32 rounded-lg" loading="lazy">
-            <span class="mt-2 text-lg font-medium">{{ item.name }}</span>
+            <span class="mt-2 ml-2 text-lg font-medium">{{ item.name }}</span>
           </div>
           <div>
             <NuxtLink :to="`${props.to}/${item.id}`">

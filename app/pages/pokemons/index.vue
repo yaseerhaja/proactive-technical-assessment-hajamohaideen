@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import BreadcrumbNav from '~/components/Navigation/BreadcrumbNav.vue'
-import ListOrGrid from '~/components/Overview/ListOrGrid.vue'
+import ListOrGrid from '~/components/Application/Overview/ListOrGrid.vue'
 import { fetchPokemonData } from '~/composables/usePokemon'
 
 const navLinks = [{

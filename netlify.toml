@@ -1,5 +1,5 @@
 [build]
-publish = ".output/public"
+publish = "dist"
 command = "pnpm run build"
 
 [build.environment]
@@ -11,13 +11,11 @@ RICK_AND_MORTY_API_BASE_URL = "https://rickandmortyapi.com/api"
 from = "/api/__api_party/pokemon/*"
 to = "https://pokeapi.co/api/v2/:splat"
 status = 200
-force = true
 
 [[redirects]]
 from = "/api/__api_party/rickandmorty/*"
 to = "https://rickandmortyapi.com/api/:splat"
 status = 200
-force = true
 
 [[redirects]]
 from = "/*"

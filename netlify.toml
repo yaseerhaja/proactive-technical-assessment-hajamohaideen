@@ -1,11 +1,23 @@
 [build]
-publish = "dist"
+publish = ".output/public"
 command = "pnpm run build"
 
 [build.environment]
 NODE_VERSION = "20"
 POKEMON_API_BASE_URL = "https://pokeapi.co/api/v2"
 RICK_AND_MORTY_API_BASE_URL = "https://rickandmortyapi.com/api"
+
+[[redirects]]
+from = "/api/__api_party/pokemon/*"
+to = "https://pokeapi.co/api/v2/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "/api/__api_party/rickandmorty/*"
+to = "https://rickandmortyapi.com/api/:splat"
+status = 200
+force = true
 
 [[redirects]]
 from = "/*"

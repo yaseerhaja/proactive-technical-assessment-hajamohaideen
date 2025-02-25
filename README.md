@@ -1,125 +1,123 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/0d499372-70ac-4612-a577-8ff84716ddfb/deploy-status)](https://app.netlify.com/sites/verdant-chaja-c6d512/deploys)
 
-# Assignment: Rick & Morty and Pokémon Overview Application
+# Proactive Technical Assessment
 
-Please read these instructions carefully.
+A comprehensive web application with an Nuxt, Nuxt UI component and API PArty, and automated testing & deployment pipelines.
 
-## Objective
+[![Watch the video]()]()
+![Local GIF]()
+---
 
-Create a Nuxt application to showcase two distinct content overviews:
+## Table of Contents
 
-1. **Rick and Morty characters**
-2. **Pokémon**
-
-Each overview must be accessible via a separate page. Selecting an item from an overview should navigate users to a detailed page for that item. The user experience (UX) across overviews and detail pages should be consistent, with only the data changing based on the selected item (Rick & Morty character or Pokémon). Both APIs are integrated in the project, but you may add a third if desired. Refer to the API documentation:
-
-- [Rick and Morty API](https://rickandmortyapi.com/documentation).
-- [Pokémon API](https://pokeapi.co/docs/v2).
-
-## Wireframes
-
-You are free to design the application as you see fit, but you can use the following wireframes as a reference:
-
-[![Wireframes](./public/images/wireframes.svg)](./public/images/wireframes.svg)
+- [About](#about)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Features](#features)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [License](#license)
 
 ---
 
-## Deliverable
+## About
 
-Fork this repository and submit your solution as a new repository. Once complete, share the link for review. We’ll provide feedback on your code.
-
-## Requirements
-
-### 1. Overviews
-
-- **Separate Pages**: Each overview (Rick & Morty and Pokémon) should be on its own page.
-- **Consistent UI/UX**: The overview and detail pages should maintain a unified design, with the only difference being the displayed data.
-- **Navigation**: Clicking an item in the overview should navigate to a detail page with specific information about the selected character or Pokémon.
-
-### 2. Detail Pages
-
-- **Dedicated Detail Pages**: Each character or Pokémon should have its own detail page, navigable from the overview.
-- **Component Structure**: Design components with scalability in mind to facilitate adding more overviews in the future without significant rework.
-- **View Modes**: Implement grid and list view options for the overviews.
-- **Consistent Layout**: The layout for Rick & Morty and Pokémon detail pages should be identical in structure, displaying only the relevant content.
-
-### Bonus Points
-
-- **Unit Testing**: Add one or more unit tests to ensure component functionality and reusability.
+This project is a web application designed with **Nuxt JS** for the frontend and **Nuxt UI Component** with **API Party** for the API connectivity. Deployment is managed on **Netlify**. Continuous integration and deployment (CI/CD) pipelines are set up via **Netlify** for seamless operations.
 
 ---
 
-## Key Development Concepts to Demonstrate
+## Tech Stack
 
-1. **Reusability**
-
-   - Code should be scalable and reusable, with no hard-coding or tight coupling for specific scenarios.
-
-2. **Composition Over Inheritance**
-
-   - Avoid using `if/else` statements for conditional CSS classes; instead, make components as modular and single-purpose as possible. However, it's perfectly acceptable to use `if/else` logic to render different components based on the application state.
-
-3. **Single Responsibility Components**
-
-   - Keep components focused on a single function, avoiding excessive logic or UI in one place when it can be split into smaller modules.
-
-4. **Two-Way Data Binding** (when applicable)
-
-   - If state sharing between components is needed, use `v-model` or similar for reactive state management between parent and child components, ensuring proper data flow and avoiding anti-patterns.
-
-5. **Project Structure**
-
-   - Organize the project structure clearly, using folders and files to separate concerns and maintain a clean codebase.
-
----
-
-## Technical Requirements
-
-- **State Management**: Use a global state if needed. Pinia is already installed; refer to the [Pinia documentation](https://pinia.vuejs.org/) for guidance. You can also consider using `provide` and `inject` with VueUse if appropriate. Managing the view mode (grid or list) for each overview could be a good use of state.
-
-- **API Integration**: Handle data fetching through the API Party composables. Refer to the [API Party documentation](https://example.com/api-party) for guidance. The current landing page includes an example.
-
-- **UI Components**: Use components from [Nuxt UI](https://ui.nuxt.com/) to maintain design consistency. Tailwind CSS is pre-configured and can be customized as needed.
-
-## Additional Resources
-
-- **VueUse Functions**: VueUse composables are auto-imported. Use them as needed—check the [VueUse documentation](https://vueuse.org/) for more information.
-
-- **Nuxt & Vue**: Ensure that your components, pages, and logic align with Nuxt and Vue.js best practices.
-
----
-
-## TypeScript
-
-If you choose to use TypeScript:
-
-- **Scalable Usage**: Ensure that your TypeScript implementation is scalable, reusable, and follows best practices.
-
----
-
-## Final Guidelines
-
-- **Enjoy the Project!** We’re excited to see your approach to the challenge. Reach out with any questions.
-- **Commit Regularly**: Make frequent commits for better version control.
-- **Package Manager**: The project specifies `pnpm` in `package.json`. If you prefer another package manager, you can change it, but please delete the `pnpm` lock file and commit the new one.
-- **Netlify Deployment**: You can deploy your project on Netlify, which is pre-configured. Follow the [Netlify documentation](https://docs.netlify.com/site-deploys/create-deploys/) for deployment instructions. If you deploy, set the website address in your repository settings.
-- **Linter rules**: We'd prefer you sticking to existing linter rules. These are the rules we use in our projects. If you want to change them, please let us know why.
+- **Frontend**: Nuxt, Nuxt UI, HTML, CSS, TypeScript
+- **API**: API Party
+- **Deployment**:
+   - **Netlify Server**
+- **CI/CD**: Github to Netlify
 
 ---
 
 ## Getting Started
 
-### 1. Clone to Local Machine
+Follow these steps to get the project up and running locally.
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- **Nuxt NPM** 
+- **Git** (for version control)
+- **pnpm** (node package manager)
+
+### Clone the Repository
 
 ```bash
-npx degit spend-cloud-tom/front-end-boilerplate proactive-technical-assessment-my-name
-cd proactive-technical-assessment-my-name
-pnpm i # If pnpm isn’t installed, run: npm install -g pnpm
+git clone https://github.com/yaseerhaja/proactive-technical-assessment-hajamohaideen.git
+cd proactive-technical-assessment-hajamohaideen
 ```
 
-### 2. Run the Project
+### Install Dependencies
+For the App (Nuxt):
+```bash
+pnpm install
+```
+
+### Run the Project
 
 ```bash
 pnpm run dev
 ```
+
+---
+
+### Project Structure
+
+```angular2html
+├── proactive-technical-assessment-hajamohaideen/        # Nuxt 
+│   ├── app/
+│   │   ├── components/
+│   │   ├── composables/
+│   │   ├── config/
+│   │   ├── constants/
+│   │   ├── layouts/
+│   │   ├── pages/
+│   │   ├── stores/
+│   │   ├── utils/
+│   ├── package.json
+│   ├── .github/                # GitHub Actions workflow files
+│   ├── └── workflows/
+│   ├── README.md
+│   ├── nuxt.config.ts
+│   └── netlify.toml
+```
+
+---
+
+## Features
+
+- **Application**: Responsive UI built with Nuxt.
+- **API**: Public API with API Party for seamless data interaction.
+- **CI/CD**: Fully automated build, test, and deployment pipeline through Netlify.
+- **Deployment**:
+   - **Application** is hosted on Netlify.(https://67bdf91495e027000828a733--verdant-chaja-c6d512.netlify.app/)
+
+---
+
+## Testing 
+Unit Tests are performed on UI component level
+
+## Deployment
+
+### Netlify 
+
+I have set up **Netlify** for CI/CD that handles the deployment of application.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+You can find the `LICENSE` file in the root of the repository.
+

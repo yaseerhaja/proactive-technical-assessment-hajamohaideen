@@ -3,8 +3,17 @@ import { useRoute } from 'vue-router'
 import DetailCard from '~/components/Application/DetailPage/DetailCard.vue'
 import BreadcrumbNav from '~/components/Navigation/BreadcrumbNav.vue'
 import { fetchRickAndMortyDetailById } from '~/composables/useRickAndMorty'
+import {useAppStore} from "~/stores/app";
+import {computed} from "vue";
 
 const route = useRoute()
+
+const appStore = useAppStore()
+const viewMode = computed(() => appStore.mode)
+const toggleViewMode = () => appStore.toggleMode()
+const buttonText = computed(() => (viewMode.value === 'list' ? 'Show List View' : 'Show Grid View'))
+
+const containerClass = computed(() => (viewMode.value !== 'list' ? 'grid gap-4' : 'grid gap-4 md:grid-cols-2 lg:grid-cols-2'))
 
 const navLinks = [
   { label: 'Home', icon: 'i-heroicons-home', to: '/' },
@@ -38,8 +47,14 @@ const episodeDetail = computed(() =>
 <template>
   <div class="w-full px-4 mt-6 md:px-8 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <BreadcrumbNav :links="navLinks" />
-    <div v-if="itemData?.id" class="w-full mt-8 h-auto">
-      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
+    <!-- Toggle Button -->
+    <div class="flex justify-end mb-4">
+      <UButton color="primary" variant="outline" @click="toggleViewMode">
+        {{ buttonText }}
+      </UButton>
+    </div>
+    <div v-if="itemData?.id" class="w-full mt-8 h-auto mb-4">
+      <div :class="containerClass">
         <div class="md:col-span-2 lg:col-span-1 lg:row-span-1">
           <UCard class="p-6 flex justify-center items-center h-full">
             <div class="flex flex-col items-center h-auto">

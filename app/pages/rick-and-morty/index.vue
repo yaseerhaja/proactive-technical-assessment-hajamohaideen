@@ -14,9 +14,9 @@ const navLinks = [{
 }]
 
 const appStore = useAppStore()
-
 const viewMode = computed(() => appStore.mode)
 const toggleViewMode = () => appStore.toggleMode()
+const buttonText = computed(() => (viewMode.value === 'list' ? 'Show List View' : 'Show Grid View'))
 
 // ✅ Fetch data with SSR support using `useAsyncData`
 const { data: itemsData, pending, error } = await useAsyncData('rick-morty-characters', fetchRickAndMortyData)
@@ -32,7 +32,6 @@ const items = computed(() => {
   }) || []
 })
 
-const buttonText = computed(() => (viewMode.value === 'list' ? 'Show List View' : 'Show Grid View'))
 const containerClass = computed(() => (viewMode.value !== 'list' ? 'space-y-4' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'))
 </script>
 

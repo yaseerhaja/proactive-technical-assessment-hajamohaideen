@@ -104,7 +104,8 @@ pnpm run dev
 
 ---
 
-## Testing 
+## Testing
+
 Unit Tests are performed on UI component level
 
 ## Deployment

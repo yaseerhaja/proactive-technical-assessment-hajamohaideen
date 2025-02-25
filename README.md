@@ -101,7 +101,7 @@ pnpm run dev
 - **API**: Public API with API Party for seamless data interaction.
 - **CI/CD**: Fully automated build, test, and deployment pipeline through Netlify.
 - **Deployment**:
-   - **Application** is hosted on Netlify.(https://67bdf91495e027000828a733--verdant-chaja-c6d512.netlify.app/)
+   - **Application** is hosted on Netlify.(https://verdant-chaja-c6d512.netlify.app/)
 
 ---
 

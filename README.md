@@ -1,3 +1,6 @@
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0d499372-70ac-4612-a577-8ff84716ddfb/deploy-status)](https://app.netlify.com/sites/verdant-chaja-c6d512/deploys)
+
 # Assignment: Rick & Morty and Pokémon Overview Application
 
 Please read these instructions carefully.

@@ -11,8 +11,8 @@ const navLinks = [
 ]
 
 const appStore = useAppStore()
-const viewMode = computed(() => appStore.mode)
-const toggleViewMode = () => appStore.toggleMode()
+const viewMode = computed(() => appStore.overviewMode)
+const toggleViewMode = () => appStore.toggleOverviewMode()
 const buttonText = computed(() => (viewMode.value === 'list' ? 'Show List View' : 'Show Grid View'))
 
 // ✅ Fetch data server-side using useAsyncData()

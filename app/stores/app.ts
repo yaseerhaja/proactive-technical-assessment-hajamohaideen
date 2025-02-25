@@ -1,20 +1,19 @@
-import type { APP_NAME } from '~/utils/constants'
 import { defineStore } from 'pinia'
 
 // Define types for our Pokémon item
 export const useAppStore = defineStore('app', {
   state: () => ({
-    mode: 'grid',
-    currentApp: null as APP_NAME | null,
+    overviewMode: 'list',
+    detailPageMode: 'list',
   }),
 
   actions: {
-    setCurrentApp(currentApp: APP_NAME): void {
-      this.currentApp = currentApp
+    toggleOverviewMode() {
+      this.overviewMode = this.overviewMode === 'grid' ? 'list' : 'grid'
     },
 
-    toggleMode() {
-      this.mode = this.mode === 'grid' ? 'list' : 'grid'
+    toggleDetailPageMode() {
+      this.detailPageMode = this.detailPageMode === 'grid' ? 'list' : 'grid'
     },
   },
 })

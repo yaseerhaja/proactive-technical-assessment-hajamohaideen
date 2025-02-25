@@ -9,8 +9,8 @@ import {computed} from "vue";
 const route = useRoute()
 
 const appStore = useAppStore()
-const viewMode = computed(() => appStore.mode)
-const toggleViewMode = () => appStore.toggleMode()
+const viewMode = computed(() => appStore.detailPageMode)
+const toggleViewMode = () => appStore.toggleDetailPageMode()
 const buttonText = computed(() => (viewMode.value === 'list' ? 'Show List View' : 'Show Grid View'))
 
 const containerClass = computed(() => (viewMode.value !== 'list' ? 'grid gap-4' : 'grid gap-4 md:grid-cols-2 lg:grid-cols-2'))

@@ -7,6 +7,13 @@ NODE_VERSION = "20"
 POKEMON_API_BASE_URL = "https://pokeapi.co/api/v2"
 RICK_AND_MORTY_API_BASE_URL = "https://rickandmortyapi.com/api"
 
+# Exclude /video path from redirect
+[[redirects]]
+  from = "/video/*"
+  to = "/video/:splat"
+  status = 200
+
+# Existing redirect rule for everything else
 [[redirects]]
 from = "/*"
 to = "/index.html"

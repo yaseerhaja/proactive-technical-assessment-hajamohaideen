@@ -5,8 +5,9 @@
 
 A comprehensive web application with an Nuxt, Nuxt UI component and API PArty, and automated testing & deployment pipelines.
 
-[![Watch the video](https://verdant-chaja-c6d512.netlify.app/video/desktop_demo.mp4)](https://verdant-chaja-c6d512.netlify.app/video/desktop_demo.mp4)
-[![Watch the video](https://verdant-chaja-c6d512.netlify.app/video/mobile_demo.mp4)](https://verdant-chaja-c6d512.netlify.app/video/mobile_demo.mp4)
+[Watch the desktop video](https://verdant-chaja-c6d512.netlify.app/video/desktop_demo.mp4)
+[Watch the mobile video](https://verdant-chaja-c6d512.netlify.app/video/mobile_demo.mp4)
+
 ---
 
 ## Table of Contents

@@ -76,11 +76,14 @@ const game_indices = computed(() =>
   <div class="w-full px-4 mt-6 md:px-8 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <BreadcrumbNav :links="navLinks" />
     <!-- Toggle Button -->
-    <div class="flex justify-end mb-4">
-      <UButton color="primary" variant="outline" @click="toggleViewMode">
-        {{ buttonText }}
-      </UButton>
-    </div>
+    <u-container class="hidden sm:block">
+      <div class="flex justify-end mb-4">
+        <UButton color="primary" variant="outline" @click="toggleViewMode">
+          {{ buttonText }}
+        </UButton>
+      </div>
+    </u-container>
+
     <div v-if="itemData" class="w-full mt-8 h-auto mb-4">
       <div :class="containerClass">
         <div class="md:col-span-2 lg:col-span-1 lg:row-span-2">

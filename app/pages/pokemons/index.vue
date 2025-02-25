@@ -40,11 +40,13 @@ function getPokemonId(url: string): number {
   <div class="w-full px-4 mt-6 md:px-8 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <BreadcrumbNav :links="navLinks" />
     <!-- Toggle Button -->
-    <div class="flex justify-end mb-4">
-      <UButton color="primary" variant="outline" @click="toggleViewMode">
-        {{ buttonText }}
-      </UButton>
-    </div>
+    <u-container class="hidden sm:block">
+      <div class="flex justify-end mb-4">
+        <UButton color="primary" variant="outline" @click="toggleViewMode">
+          {{ buttonText }}
+        </UButton>
+      </div>
+    </u-container>
 
     <!-- List/Grid View -->
     <ListOrGrid

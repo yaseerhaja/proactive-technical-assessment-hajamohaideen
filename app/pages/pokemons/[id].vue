@@ -7,82 +7,77 @@ import { fetchPokemonDetailById } from '~/composables/usePokemon'
 
 const route = useRoute()
 
-const navLinks = [{
-  label: 'Home',
-  icon: 'i-heroicons-home',
-  to: '/',
-}, {
-  label: 'Pokemons',
-  icon: 'i-heroicons-solid:view-list',
-  to: '/pokemons',
-}, {
-  label: 'Character',
-  icon: 'i-heroicons:user-group-16-solid',
-}]
+const navLinks = [
+  { label: 'Home', icon: 'i-heroicons-home', to: '/' },
+  { label: 'Pokemons', icon: 'i-heroicons-solid:view-list', to: '/pokemons' },
+  { label: 'Character', icon: 'i-heroicons:user-group-16-solid' },
+]
 
-// Fetch item data during SSR (this ensures the data is available on hard refresh)
-const itemData = await fetchPokemonDetailById(route.params.id)
+// ✅ Use useAsyncData for SSR-friendly API call
+const { data: itemData } = useAsyncData(() => fetchPokemonDetailById(route.params.id))
 
-const basicDetail = [{
-  'Name': itemData?.name || 'N/A',
-  'Height': itemData?.height || 'N/A',
-  'Order': itemData?.order || 'N/A',
-  'Weight': itemData?.weight || 'N/A',
-  'Base Experience': itemData?.base_experience || 'N/A',
-}]
+const basicDetail = computed(() => [
+  { Name: itemData.value?.name || 'N/A' },
+  { Height: itemData.value?.height || 'N/A' },
+  { Order: itemData.value?.order || 'N/A' },
+  { Weight: itemData.value?.weight || 'N/A' },
+  { 'Base Experience': itemData.value?.base_experience || 'N/A' },
+])
 
-const abilityDetail = itemData?.abilities.map((ability: Ability) => {
-  return {
+const abilityDetail = computed(() =>
+  itemData.value?.abilities?.map((ability: Ability) => ({
     Name: ability.ability.name,
     Link: ability.ability.url,
     Slot: ability.slot,
     Hidden: ability.is_hidden,
-  }
-}) || []
+  })) || [],
+)
 
-const species = [
-  {
-    Name: itemData?.species.name,
-    Link: itemData?.species.url,
-  },
-]
+const species = computed(() => [
+  { Name: itemData.value?.species?.name, Link: itemData.value?.species?.url },
+])
 
-const types = itemData?.types.map((e: Type) => {
-  return {
+const types = computed(() =>
+  itemData.value?.types?.map((e: Type) => ({
     Name: e.type.name,
     Link: e.type.url,
     Slot: e.slot,
-  }
-})
+  })) || [],
+)
 
-const stats = itemData?.stats.map((e: Stat) => {
-  return {
+const stats = computed(() =>
+  itemData.value?.stats?.map((e: Stat) => ({
     'Name': e.stat.name,
     'Link': e.stat.url,
     'Effort': e.effort,
     'Base Stats': e.base_stat,
-  }
-})
+  })) || [],
+)
 
-const game_indices = itemData?.game_indices.map((e: GameIndex) => {
-  return {
+const game_indices = computed(() =>
+  itemData.value?.game_indices?.map((e: GameIndex) => ({
     'Version Name': e.version.name,
     'Link': e.version.url,
     'Game Index': e.game_index,
-  }
-})
+  })) || [],
+)
 </script>
 
 <template>
   <div class="w-full px-4 mt-6 md:px-8 mx-auto sm:px-6 lg:px-8 max-w-7xl">
     <BreadcrumbNav :links="navLinks" />
-    <div v-if="itemData?.id" class="w-full mt-8 h-auto">
+    <div v-if="itemData" class="w-full mt-8 h-auto">
       <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <div class="md:col-span-2 lg:col-span-1 lg:row-span-2">
           <UCard class="p-6 flex justify-center items-center h-full">
             <div class="flex flex-col items-center h-auto">
               <div class="m-4">
-                <img :src="itemData.sprites?.other?.['official-artwork']?.front_default" :alt="itemData.name" class="w-auto rounded-lg object-cover mb-4" loading="lazy">
+                <img
+                  :src="itemData.sprites?.other?.['official-artwork']?.front_default"
+                  :alt="itemData.name"
+                  class="w-auto rounded-lg object-cover mb-4"
+                  loading="lazy"
+                >
               </div>
               <div class="m-4">
                 <h2 class="text-2xl font-bold">
@@ -108,7 +103,7 @@ const game_indices = itemData?.game_indices.map((e: GameIndex) => {
           <DetailCard :details="stats" title="Stats" />
         </div>
         <div class="col-span-1">
-          <DetailCard :details="game_indices" title="Game indices" />
+          <DetailCard :details="game_indices" title="Game Indices" />
         </div>
       </div>
     </div>

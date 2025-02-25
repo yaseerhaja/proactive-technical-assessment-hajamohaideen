@@ -1,39 +1,34 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import BreadcrumbNav from '~/components/Navigation/BreadcrumbNav.vue'
 import ListOrGrid from '~/components/Application/Overview/ListOrGrid.vue'
+import BreadcrumbNav from '~/components/Navigation/BreadcrumbNav.vue'
 import { fetchPokemonData } from '~/composables/usePokemon'
+import { useAppStore } from '~/stores/app'
 
-const navLinks = [{
-  label: 'Home',
-  icon: 'i-heroicons-home',
-  to: '/',
-}, {
-  label: 'Pokemons',
-  icon: 'i-heroicons-solid:view-list',
-}]
+const navLinks = [
+  { label: 'Home', icon: 'i-heroicons-home', to: '/' },
+  { label: 'Pokemons', icon: 'i-heroicons-solid:view-list' },
+]
 
 const appStore = useAppStore()
-
-// Fetch pokemon data
-const itemsData = await fetchPokemonData()
-
 const viewMode = computed(() => appStore.mode)
 const toggleViewMode = () => appStore.toggleMode()
 
-// Simulate item data mapping from the API response
-const items = itemsData?.results?.map((pokemon: any) => {
-  const id = getPokemonId(pokemon.url)
-  return {
-    id,
-    name: pokemon.name,
-    image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
-  }
-}) || []
+// ✅ Fetch data server-side using useAsyncData()
+const { data: itemsData } = await useAsyncData('pokemon-list', fetchPokemonData)
 
+const items = computed(() =>
+  itemsData.value?.results?.map((pokemon: any) => ({
+    id: getPokemonId(pokemon.url),
+    name: pokemon.name,
+    image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${getPokemonId(pokemon.url)}.png`,
+  })) || [],
+)
 
 const buttonText = computed(() => (viewMode.value === 'list' ? 'Show List View' : 'Show Grid View'))
-const containerClass = computed(() => (viewMode.value !== 'list' ? 'space-y-4' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'))
+const containerClass = computed(() =>
+  viewMode.value !== 'list' ? 'space-y-4' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4',
+)
 
 function getPokemonId(url: string): number {
   const match = url.match(/\/pokemon\/(\d+)\//)
@@ -54,9 +49,9 @@ function getPokemonId(url: string): number {
     <!-- List/Grid View -->
     <ListOrGrid
       :items="items"
-      :containerClass="containerClass"
+      :container-class="containerClass"
       to="/pokemons"
-      :isGrid="viewMode.value === 'grid'"
+      :is-grid="viewMode.value === 'grid'"
     />
   </div>
 </template>

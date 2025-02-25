@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type GenericMap<T> = {
+export type GenericMap<T> = {
   [K in string]: T;
 }
 

@@ -10,10 +10,10 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div v-if="props.items.length">
+  <div v-if="props.items.length" class="list-grid-container">
     <div :class="containerClass">
       <UCard
-        v-for="item in items"
+        v-for="item in props.items"
         :key="item.id"
         class="p-4 w-full"
       >

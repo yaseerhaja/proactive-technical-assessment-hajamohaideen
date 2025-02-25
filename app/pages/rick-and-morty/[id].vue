@@ -6,36 +6,33 @@ import { fetchRickAndMortyDetailById } from '~/composables/useRickAndMorty'
 
 const route = useRoute()
 
-const navLinks = [{
-  label: 'Home',
-  icon: 'i-heroicons-home',
-  to: '/',
-}, {
-  label: 'Rick and Morty',
-  icon: 'i-heroicons-solid:view-list',
-  to: '/rick-and-morty',
-}, {
-  label: 'Character',
-  icon: 'i-heroicons:user-group-16-solid',
-}]
+const navLinks = [
+  { label: 'Home', icon: 'i-heroicons-home', to: '/' },
+  { label: 'Rick and Morty', icon: 'i-heroicons-solid:view-list', to: '/rick-and-morty' },
+  { label: 'Character', icon: 'i-heroicons:user-group-16-solid' },
+]
 
-// Fetch item data during SSR (this ensures the data is available on hard refresh)
-const itemData = await fetchRickAndMortyDetailById(route.params.id)
+// ✅ Fetch data with SSR support
+const { data: itemData } = await useAsyncData(
+  `rick-morty-${route.params.id}`,
+  () => fetchRickAndMortyDetailById(route.params.id),
+)
 
-const basicDetail = [{
-  Name: itemData?.name || 'N/A',
-  Status: itemData?.status || 'N/A',
-  Species: itemData?.species || 'N/A',
-  Type: itemData?.type || 'N/A',
-  Gender: itemData?.gender || 'N/A',
-}]
+// ✅ Computed properties for safe rendering
+const basicDetail = computed(() => [
+  { Name: itemData.value?.name || 'N/A' },
+  { Status: itemData.value?.status || 'N/A' },
+  { Species: itemData.value?.species || 'N/A' },
+  { Type: itemData.value?.type || 'N/A' },
+  { Gender: itemData.value?.gender || 'N/A' },
+])
 
-const episodeDetail = itemData?.episode.map((e: string, index) => {
-  return {
-    Name: `Episode ${index}`,
+const episodeDetail = computed(() =>
+  itemData.value?.episode?.map((e: string, index: number) => ({
+    Name: `Episode ${index + 1}`,
     Link: e,
-  }
-}) || []
+  })) || [],
+)
 </script>
 
 <template>
@@ -47,7 +44,12 @@ const episodeDetail = itemData?.episode.map((e: string, index) => {
           <UCard class="p-6 flex justify-center items-center h-full">
             <div class="flex flex-col items-center h-auto">
               <div class="m-4">
-                <img :src="itemData.image" :alt="itemData.name" class="h-[275px] md:h-[375px] w-auto rounded-lg object-cover mb-4" loading="lazy">
+                <img
+                  :src="itemData.image"
+                  :alt="itemData.name"
+                  class="h-[275px] md:h-[375px] w-auto rounded-lg object-cover mb-4"
+                  loading="lazy"
+                >
               </div>
               <div class="m-4">
                 <h2 class="text-2xl font-bold">

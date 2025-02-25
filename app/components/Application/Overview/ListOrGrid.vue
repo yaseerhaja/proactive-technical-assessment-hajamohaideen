@@ -23,8 +23,16 @@ const props = defineProps<{
             <span class="mt-2 ml-2 text-lg font-medium">{{ item.name }}</span>
           </div>
           <div>
-            <NuxtLink :to="`${props.to}/${item.id}`">
-              <UButton color="primary" variant="outline" class="w-full p-2 cursor-pointer">
+            <NuxtLink
+              :to="`${props.to}/${item.id}`"
+              class="w-full cursor-pointer"
+              aria-label="More details"
+            >
+              <UButton
+                color="primary"
+                variant="outline"
+                class="w-full p-2"
+              >
                 More Details
               </UButton>
             </NuxtLink>

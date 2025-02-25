@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import DetailCard from '~/components/Application/DetailPage/DetailCard.vue'
 import BreadcrumbNav from '~/components/Navigation/BreadcrumbNav.vue'
 import { fetchRickAndMortyDetailById } from '~/composables/useRickAndMorty'
-import {useAppStore} from "~/stores/app";
-import {computed} from "vue";
+import { useAppStore } from '~/stores/app'
 
 const route = useRoute()
 

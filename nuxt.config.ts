@@ -71,12 +71,10 @@ export default defineNuxtConfig({
   apiParty: {
     endpoints: {
       pokemon: {
-        // eslint-disable-next-line node/prefer-global/process
-        url: process.env.POKEMON_API_BASE_URL!,
+        url: 'https://pokeapi.co/api/v2',
       },
       rickAndMorty: {
-        // eslint-disable-next-line node/prefer-global/process
-        url: process.env.RICK_AND_MORTY_API_BASE_URL!,
+        url: 'https://rickandmortyapi.com/api',
       },
     },
   },

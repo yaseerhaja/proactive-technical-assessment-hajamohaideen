@@ -15,7 +15,6 @@ const viewMode = computed(() => appStore.overviewMode)
 const toggleViewMode = () => appStore.toggleOverviewMode()
 const buttonText = computed(() => (viewMode.value === 'list' ? 'Show List View' : 'Show Grid View'))
 
-// ✅ Fetch data server-side using useAsyncData()
 const { data: itemsData } = await useAsyncData('pokemon-list', fetchPokemonData)
 
 const items = computed(() =>

@@ -21,13 +21,11 @@ const navLinks = [
   { label: 'Character', icon: 'i-heroicons:user-group-16-solid' },
 ]
 
-// ✅ Fetch data with SSR support
 const { data: itemData } = await useAsyncData(
   `rick-morty-${route.params.id}`,
   () => fetchRickAndMortyDetailById(route.params.id),
 )
 
-// ✅ Computed properties for safe rendering
 const basicDetail = computed(() => [
   { Name: itemData.value?.name || 'N/A' },
   { Status: itemData.value?.status || 'N/A' },

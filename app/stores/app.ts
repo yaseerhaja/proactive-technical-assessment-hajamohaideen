@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 
-// Define types for our Pokémon item
 export const useAppStore = defineStore('app', {
   state: () => ({
     overviewMode: 'list',

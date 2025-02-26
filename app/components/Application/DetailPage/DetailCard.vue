@@ -41,7 +41,3 @@ const props = defineProps<{
     </u-container>
   </UCard>
 </template>
-
-<style scoped>
-
-</style>

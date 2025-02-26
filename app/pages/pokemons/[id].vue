@@ -22,7 +22,6 @@ const navLinks = [
   { label: 'Character', icon: 'i-heroicons:user-group-16-solid' },
 ]
 
-// ✅ Use useAsyncData for SSR-friendly API call
 const { data: itemData } = useAsyncData(() => fetchPokemonDetailById(route.params.id))
 
 const basicDetail = computed(() => [

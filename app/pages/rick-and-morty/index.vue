@@ -18,10 +18,8 @@ const viewMode = computed(() => appStore.overviewMode)
 const toggleViewMode = () => appStore.toggleOverviewMode()
 const buttonText = computed(() => (viewMode.value === 'list' ? 'Show List View' : 'Show Grid View'))
 
-// ✅ Fetch data with SSR support using `useAsyncData`
 const { data: itemsData, pending, error } = await useAsyncData('rick-morty-characters', fetchRickAndMortyData)
 
-// Simulate item data mapping from the API response
 const items = computed(() => {
   return itemsData.value?.results?.map((character: any) => {
     return {

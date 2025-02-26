@@ -1,27 +1,27 @@
 import type { Pokemon, PokemonDetails } from '~/utils/pokemon'
 
-export async function fetchPokemonData(): Pokemon | null {
+export async function fetchPokemonData(): Promise<Pokemon | null> {
   const { data, error } = await usePokemonData('pokemon')
 
-  watchEffect(() => {
-    if (error.value)
-      console.error(error.value.data)
-  })
+  if (error.value) {
+    console.error(error.value.data)
+    return null
+  }
 
-  return data.value as Pokemon
+  return data.value as Pokemon | null
 }
 
-export async function fetchPokemonDetailById(id: number): PokemonDetails | null {
+export async function fetchPokemonDetailById(id: number): Promise<PokemonDetails | null> {
   const { data, error } = await usePokemonData('pokemon/{id}', {
     path: () => ({
       id,
     }),
   })
 
-  watchEffect(() => {
-    if (error.value)
-      console.error(error.value.data)
-  })
+  if (error.value) {
+    console.error(error.value.data)
+    return null
+  }
 
-  return data.value as PokemonDetails
+  return data.value as PokemonDetails | null
 }

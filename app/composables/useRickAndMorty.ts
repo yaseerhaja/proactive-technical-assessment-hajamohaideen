@@ -11,7 +11,7 @@ export async function fetchRickAndMortyData(): RickAndMorty | null {
 }
 
 export async function fetchRickAndMortyDetailById(id: number): Character | null {
-  const { data } = await useRickAndMortyData('character/{id}', {
+  const { data, error } = await useRickAndMortyData('character/{id}', {
     path: () => ({
       id,
     }),
